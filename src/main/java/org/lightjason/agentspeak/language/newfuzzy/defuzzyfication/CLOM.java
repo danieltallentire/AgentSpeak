@@ -21,32 +21,32 @@
  * @endcond
  */
 
-package org.lightjason.agentspeak.language.newfuzzy;
+package org.lightjason.agentspeak.language.newfuzzy.defuzzyfication;
 
-import java.util.function.BiFunction;
+import org.lightjason.agentspeak.agent.IAgent;
+import org.lightjason.agentspeak.language.fuzzy.IFuzzyValue;
+import org.lightjason.agentspeak.language.newfuzzy.set.IFuzzySet;
+
+import javax.annotation.Nonnull;
 import java.util.stream.Stream;
 
 
 /**
- * fuzzy set
- *
- * @tparam T enum type
+ * defuzzification with least-of-maximum
  */
-public interface IFuzzySet<T extends Enum<?>> extends BiFunction<T, Number, IFuzzyValue<T>>
+public class CLOM<T extends IFuzzySet<?>> implements IDefuzzification<T>
 {
+    @Nonnull
+    @Override
+    public T defuzzify( @Nonnull final Stream<IFuzzyValue<T>> p_value )
+    {
+        return null;
+    }
 
-    /**
-     * returns the definition of success
-     *
-     * @return success fuzzy value
-     */
-    Stream<IFuzzyValue<T>> success();
-
-    /**
-     * returns the definition of fail
-     *
-     * @return fail fuzzy value
-     */
-    Stream<IFuzzyValue<T>> fail();
-
+    @Nonnull
+    @Override
+    public IAgent<?> update( @Nonnull final IAgent<?> p_agent )
+    {
+        return null;
+    }
 }

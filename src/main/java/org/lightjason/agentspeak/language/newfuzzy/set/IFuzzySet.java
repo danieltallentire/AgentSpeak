@@ -21,81 +21,34 @@
  * @endcond
  */
 
-package org.lightjason.agentspeak.language.newfuzzy;
+package org.lightjason.agentspeak.language.newfuzzy.set;
 
+import org.lightjason.agentspeak.language.newfuzzy.IFuzzyValue;
+
+import java.util.function.BiFunction;
 import java.util.stream.Stream;
 
 
 /**
- * fuzzy boolean
+ * fuzzy set
+ *
+ * @tparam T enum type
  */
-public enum EBoolean implements IFuzzySet<EBoolean>
+public interface IFuzzySet<T extends Enum<?>> extends BiFunction<T, Number, IFuzzyValue<T>>
 {
-    TRUE( true ),
-    FALSE( false );
 
     /**
-     * native type
-     */
-    private final boolean m_value;
-
-    /**
-     * ctor
-     * @param p_value
-     */
-    EBoolean( final boolean p_value )
-    {
-        m_value = p_value;
-    }
-
-    /**
-     * raw type
+     * returns the definition of success
      *
-     * @return raw value
+     * @return success fuzzy value
      */
-    public final boolean raw()
-    {
-        return m_value;
-    }
+    Stream<IFuzzyValue<T>> success();
 
-    @Override
-    public final Stream<IFuzzyValue<EBoolean>> success()
-    {
-        return Stream.of( this.apply( TRUE, 1 ) );
-    }
+    /**
+     * returns the definition of fail
+     *
+     * @return fail fuzzy value
+     */
+    Stream<IFuzzyValue<T>> fail();
 
-    @Override
-    public final Stream<IFuzzyValue<EBoolean>> fail()
-    {
-        return Stream.of( this.apply( FALSE, 1 ) );
-    }
-
-    @Override
-    public final IFuzzyValue<EBoolean> apply( final EBoolean p_type, final Number p_number )
-    {
-        return new IFuzzyValue<EBoolean>()
-        {
-            private final EBoolean m_type = p_type;
-            private final Number m_value = p_number;
-
-            @Override
-            public final EBoolean value()
-            {
-                return m_type;
-            }
-
-            @Override
-            public final Number fuzzy()
-            {
-                return m_value;
-            }
-
-            @Override
-            @SuppressWarnings( "unchecked" )
-            public <N extends EBoolean> N raw()
-            {
-                return (N) m_type;
-            }
-        };
-    }
 }

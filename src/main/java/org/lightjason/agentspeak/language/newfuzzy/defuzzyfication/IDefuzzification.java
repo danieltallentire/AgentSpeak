@@ -26,7 +26,6 @@ package org.lightjason.agentspeak.language.newfuzzy.defuzzyfication;
 
 import org.lightjason.agentspeak.agent.IAgent;
 import org.lightjason.agentspeak.language.fuzzy.IFuzzyValue;
-import org.lightjason.agentspeak.language.newfuzzy.set.IFuzzySet;
 
 import javax.annotation.Nonnull;
 import java.util.stream.Stream;
@@ -39,7 +38,7 @@ import java.util.stream.Stream;
  * @tparam S agent type
  * @see https://en.wikipedia.org/wiki/Defuzzification
  */
-public interface IDefuzzification<T extends IFuzzySet<?>>
+public interface IDefuzzification<T extends Enum<?>>
 {
 
     /**

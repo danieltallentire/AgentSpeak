@@ -43,7 +43,7 @@ public enum EBoolean implements IFuzzySet<EBoolean>
 
     /**
      * ctor
-     * @param p_value
+     * @param p_value value
      */
     EBoolean( final boolean p_value )
     {

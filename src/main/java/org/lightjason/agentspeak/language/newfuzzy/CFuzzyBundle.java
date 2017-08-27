@@ -23,31 +23,45 @@
 
 package org.lightjason.agentspeak.language.newfuzzy;
 
+import org.lightjason.agentspeak.language.newfuzzy.defuzzyfication.IDefuzzification;
+import org.lightjason.agentspeak.language.newfuzzy.set.IFuzzySet;
+
+
 /**
- * fuzzy value
- * @tparam T enum type
+ * fuzzy bundle
  */
-public interface IFuzzyValue<T extends Enum<?>>
+public final class CFuzzyBundle<T extends Enum<?>> implements IFuzzyBundle<T>
 {
     /**
-     * returns the value
-     * @return returns type
+     * fuzzy set
      */
-    T value();
+    private final IFuzzySet<T> m_set;
+    /**
+     * defuzzification
+     */
+    private final IDefuzzification<T> m_defuzzyfication;
 
     /**
-     * returns the fuzzy number
+     * ctor
      *
-     * @return fuzzy number
+     * @param p_set fuzzy set
+     * @param p_defuzzyfication defuzzyfication
      */
-    Number fuzzy();
+    public CFuzzyBundle( final IFuzzySet<T> p_set, final IDefuzzification<T> p_defuzzyfication )
+    {
+        m_set = p_set;
+        m_defuzzyfication = p_defuzzyfication;
+    }
 
+    @Override
+    public final IFuzzySet<T> set()
+    {
+        return m_set;
+    }
 
-    /**
-     * returns raw enum type
-     *
-     * @tparam N enum type
-     * @return casted value
-     */
-    <N extends T> N raw();
+    @Override
+    public final IDefuzzification<T> defuzzification()
+    {
+        return m_defuzzyfication;
+    }
 }
